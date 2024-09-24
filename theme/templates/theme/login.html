@@ -1,0 +1,86 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>Advanced AI</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+	</head>
+    <body>
+        <div class="bg-gray-800 py-12"></div> 
+        
+    <section class="flex justify-center items-center min-h-screen bg-white">
+        
+        <div class="bg-gray-50 shadow-md rounded-lg p-6 w-96">
+            <a  class=" text-blue-950 flex justify-center lg:justify-start">
+                <img class="h-24  w-auto w-full" src="../../static/images/advanced_ai.png" alt="">
+            </a>
+            <h1 class="pt-12 text-3xl text-gray-800 font-bold text-center">Sign in to your Back Office</h1>
+            <form class="space-y-6" method="POST">
+                {% csrf_token %}
+                <div>
+                    <label class="flex  items-center mb-2 text-gray-600 text-sm font-medium">Username <svg width="7" height="7" class="ml-1" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.11222 6.04545L3.20668 3.94744L1.43679 5.08594L0.894886 4.14134L2.77415 3.18182L0.894886 2.2223L1.43679 1.2777L3.20668 2.41619L3.11222 0.318182H4.19105L4.09659 2.41619L5.86648 1.2777L6.40838 2.2223L4.52912 3.18182L6.40838 4.14134L5.86648 5.08594L4.09659 3.94744L4.19105 6.04545H3.11222Z" fill="#EF4444" />
+                      </svg>
+                    </label>
+                    <div class="mt-2">
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                            <div class="text-red-500 text-sm mt-1">
+                                {{ form.username.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            
+                <div>
+                    <div class="flex items-center justify-between">
+                        <label class="flex  items-center mb-2 text-gray-600 text-sm font-medium">Mot de passe<svg width="7" height="7" class="ml-1" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.11222 6.04545L3.20668 3.94744L1.43679 5.08594L0.894886 4.14134L2.77415 3.18182L0.894886 2.2223L1.43679 1.2777L3.20668 2.41619L3.11222 0.318182H4.19105L4.09659 2.41619L5.86648 1.2777L6.40838 2.2223L4.52912 3.18182L6.40838 4.14134L5.86648 5.08594L4.09659 3.94744L4.19105 6.04545H3.11222Z" fill="#EF4444" />
+                          </svg>
+                        </label>
+                        
+                    </div>
+                    <div class="mt-2">
+                        {{ form.password }}
+                        {% if form.password.errors %}
+                            <div class="text-red-500 text-sm mt-1">
+                                {{ form.password.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            
+                <div>
+                    <button type="submit" class="flex w-full justify-center rounded-md bg-gray-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Se connecter</button>
+                </div>
+            </form>
+
+            {% if form.errors %}
+                <div class="mt-3 bg-red-50 border-l-4 border-red-400 p-4">
+                    <div class="text-red-700">
+                        <ul>
+                            {% for field in form %}
+                                {% if field.errors %}
+                                    <li>{{ field.label }}: {{ field.errors }}</li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if form.non_field_errors %}
+                                <li>{{ form.non_field_errors }}</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+
+            
+        </div>
+        
+    </div>
+</section>
+      </body>
+       
+
+</html>
